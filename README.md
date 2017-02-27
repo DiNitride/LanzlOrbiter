@@ -1,0 +1,2 @@
+# LanzlOrbiter
+A weather bot
