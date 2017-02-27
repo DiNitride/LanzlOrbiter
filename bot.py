@@ -11,6 +11,7 @@ bot = commands.Bot(command_prefix="?", description=description, pm_help=True)
 with open("config/config.json") as f:
     bot.config = json.load(f)
 
+
 @bot.event
 async def on_ready():
     print("-----------------------------------------")
@@ -19,7 +20,8 @@ async def on_ready():
     print(bot.user.id)
     print("-----------------------------------------")
     bot.load_extension("modules.weather")
-    await bot.change_presence(game=discord.Game(name="~~today"))
+    print("Loaded Weather")
+    await bot.change_presence(game=discord.Game(name="Space Science"))
 
 
 @bot.command(hidden=True)
@@ -35,6 +37,12 @@ async def updateprofile():
 @commands.check(checks.is_owner)
 async def changename(*, name):
     await bot.edit_profile(username=name)
+
+
+@bot.command(hidden=True)
+@commands.check(checks.is_owner)
+async def status(*, status):
+    await bot.change_presence(game=discord.Game(name=status))
 
 # login token
 bot.run(bot.config["login_token"])
