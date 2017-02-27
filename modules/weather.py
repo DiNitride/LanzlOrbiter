@@ -205,7 +205,7 @@ class Weather:
 
         msg = await self.bot.send_message(channel, embed=em)
 
-        await asyncio.sleep(5)
+        await asyncio.sleep(120)
 
         t, w, wt = self.generate()
         self.today["t"] = t
