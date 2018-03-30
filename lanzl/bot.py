@@ -3,15 +3,12 @@ import logging
 from datetime import datetime
 import asyncio
 import atexit
+import os
 
 import discord
 from discord.ext import commands
 
 from .utils import ConfigManager, HelpFormatter
-
-MODULES = [
-    "suggestions_board"
-]
 
 
 class LanzlOrbiter(commands.AutoShardedBot):
@@ -31,9 +28,19 @@ class LanzlOrbiter(commands.AutoShardedBot):
     def uptime(self):
         return datetime.now() - self.startup
 
+    async def on_command(self, ctx):
+        if isinstance(ctx.channel, discord.DMChannel):
+            self.logger.debug(f"Command: '{ctx.command}' "
+                              f"User: '{ctx.author}'/{ctx.author.id} (In DM's)")
+        else:
+            self.logger.debug(f"Command: {ctx.command} "
+                              f"Channel: '#{ctx.channel.name}'/{ctx.channel.id} "
+                              f"Guild: '{ctx.guild}'/{ctx.guild.id} "
+                              f"User: '{ctx.author}'/{ctx.author.id}")
+
     async def on_ready(self):
         self.logger.info(f"Logged in as {self.user} with ID: {self.user.id}")
-        await self.change_presence(game=discord.Game(name="~help for commands!", type=0))
+        await self.change_presence(activity=discord.Game(name="~help for commands!"))
 
     def save_configs(self):
         self.config.save()
@@ -58,3 +65,17 @@ class LanzlOrbiter(commands.AutoShardedBot):
             super().run(self.config["discord_token"])
         except discord.errors.LoginFailure:
             self.logger.error("Improper token has been passed!")
+
+
+def main():
+    os.chdir("lanzl")
+    logger = logging.getLogger("lanzl")
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)8s [%(name)s] : %(message)s'))
+    logger.addHandler(stream_handler)
+    logger.setLevel(logging.DEBUG)
+    LanzlOrbiter().run()
+
+
+if __name__ == "__main__":
+    main()

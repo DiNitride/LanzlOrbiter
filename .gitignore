@@ -2,3 +2,5 @@
 .idea
 lanzl/config/*
 !lanzl/config/defaults
+/venv/
+LanzlOrbiter.egg-info
