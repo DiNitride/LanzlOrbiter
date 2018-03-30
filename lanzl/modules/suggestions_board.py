@@ -82,10 +82,6 @@ class Suggestions(Cog):
         self.config["suggestion_channel"] = None
         await ctx.send("`Cleared the guild's suggestion channel`")
 
-    @commands.command()
-    async def save(self, ctx):
-        self.bot.save_configs()
-
     def create_suggestion_embed(self, title, suggestion, author, up, down):
         author = self.bot.get_user(author)
 

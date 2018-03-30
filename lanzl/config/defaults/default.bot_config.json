@@ -3,6 +3,7 @@
   "owner": "",
   "prefix": "l!",
   "modules": {
-    "suggestions_board": true
+    "suggestions_board": true,
+    "core": true
   }
 }
