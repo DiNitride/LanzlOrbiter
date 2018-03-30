@@ -33,6 +33,7 @@ class LanzlOrbiter(commands.AutoShardedBot):
 
     async def on_ready(self):
         self.logger.info(f"Logged in as {self.user} with ID: {self.user.id}")
+        await self.change_presence(game=discord.Game(name="~help for commands!", type=0))
 
     def save_configs(self):
         self.config.save()
