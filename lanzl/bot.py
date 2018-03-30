@@ -65,21 +65,3 @@ class LanzlOrbiter(commands.AutoShardedBot):
             super().run(self.config["discord_token"])
         except discord.errors.LoginFailure:
             self.logger.error("Improper token has been passed!")
-
-
-def main():
-    os.chdir("lanzl")
-    logger = logging.getLogger("lanzl")
-    stream_handler = logging.StreamHandler()
-    stream_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)8s [%(name)s] : %(message)s'))
-    logger.addHandler(stream_handler)
-    logger.setLevel(logging.DEBUG)
-    LanzlOrbiter().run()
-
-
-def __main__():
-    main()
-
-
-if __name__ == "__main__":
-    main()
