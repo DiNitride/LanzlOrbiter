@@ -1,3 +1,4 @@
-config/config.json
 *.pyc
 .idea
+lanzl/config/*
+!lanzl/config/defaults

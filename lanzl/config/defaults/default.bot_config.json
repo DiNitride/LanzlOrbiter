@@ -1,0 +1,8 @@
+{
+  "discord_token": "",
+  "owner": "",
+  "prefix": "l!",
+  "modules": {
+    "suggestions_board": true
+  }
+}
