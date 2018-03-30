@@ -92,6 +92,8 @@ class Suggestions(Cog):
         embed.set_author(name=author, url="https://discordapp.com",
                          icon_url=author.avatar_url)
 
+        embed.set_footer(text="Discuss this suggestion in #discussion!")
+
         embed.add_field(name="Updoots \N{upwards black arrow}", value=up, inline=True)
         embed.add_field(name="Downdoots \N{downwards black arrow}", value=down, inline=True)
         return embed
